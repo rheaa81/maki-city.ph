@@ -236,8 +236,6 @@ function adjustHeroHeight() {
   }
 }
 
-alert("Welcome to Maki City")
-
 window.addEventListener("resize", adjustHeroHeight)
 
 // function to handle review form submission
@@ -1786,19 +1784,31 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   }
 
-  // Women's Month Promotional Popup
+  // Promotional Popup
   const promoPopup = document.getElementById("promo-popup")
   const closePromoBtn = document.getElementById("close-promo")
 
   if (promoPopup && closePromoBtn) {
-    // Show the popup when the page loads
-    setTimeout(() => {
+    // Show the popup immediately when the page loads
+    window.addEventListener("DOMContentLoaded", () => {
       promoPopup.classList.add("show")
-    }, 2000) // Show after 2 seconds
+    })
 
     // Close the popup when the close button is clicked
     closePromoBtn.addEventListener("click", () => {
       promoPopup.classList.remove("show")
+      // Store in localStorage that the user has closed the popup
+      localStorage.setItem("promoPopupClosed", "true")
+    })
+
+    // Check if this is a new session to show popup
+    window.addEventListener("pageshow", (event) => {
+      // Always show the popup on a fresh page load
+      if (event.persisted) {
+        // Page was loaded from cache (back/forward navigation)
+        return
+      }
+      promoPopup.classList.add("show")
     })
   }
 

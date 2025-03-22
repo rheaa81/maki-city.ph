@@ -999,7 +999,7 @@ footer {
   background-color: white;
   border-radius: 8px;
   width: 90%;
-  max-width: 400px;
+  max-width: 1000px;
   max-height: 90vh;
   overflow: hidden;
   position: relative;
@@ -1034,7 +1034,8 @@ footer {
 .promo-image img {
   width: 100%;
   height: auto;
-  object-fit: cover;
+  object-fit: contain;
+  display: block;
 }
 
 @media (min-width: 768px) {
